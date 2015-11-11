@@ -5,7 +5,8 @@
   "scripts": {
     "make" : "./node_modules/.bin/gulp",
     "test" : "npm run-script make && ./node_modules/.bin/gulp test",
-    "serve" : "npm run-script make && node ./bin/server/main.js"
+    "serve" : "npm run-script make && node ./bin/server/main.js",
+    "justrun" : "node ./bin/server/main.js"
   },
   "dependencies": {
     "facebook-chat-api" : "latest",
