@@ -42,6 +42,9 @@ var MessengerService = (function (_super) {
             var split = message.body.split(/\s+/);
             var command = split[1].toLowerCase();
             switch (command) {
+                case "whatsmyip":
+                    this.aEmit('whatsMyIp');
+                    break;
                 case "whoishome":
                     this.aEmit('whoIsHome');
                     break;

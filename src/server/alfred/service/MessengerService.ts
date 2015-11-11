@@ -51,6 +51,9 @@ class MessengerService extends Service {
     		var command = split[1].toLowerCase();
     
     		switch (command) {
+                case "whatsmyip":
+                    this.aEmit('whatsMyIp');
+                    break;
     			case "whoishome":
                     this.aEmit('whoIsHome');
     				break;
