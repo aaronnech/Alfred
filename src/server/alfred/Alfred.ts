@@ -4,6 +4,7 @@ import MessengerService = require('./service/MessengerService');
 import ChoreRotationService = require('./service/ChoreRotationService');
 import DayService = require('./service/DayService');
 import UpdateService = require('./service/UpdateService');
+import WhatsMyIpService = require('./service/WhatsMyIpService');
 
 var login = require("facebook-chat-api");
 
@@ -24,7 +25,8 @@ class Alfred {
 			new WhoIsHomeService(),
 			new ChoreRotationService(),
 			new DayService(),
-			new UpdateService()
+			new UpdateService(),
+			new WhatsMyIpService()
 		];
 	}
 
