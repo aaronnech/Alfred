@@ -16,9 +16,10 @@ var WhatsMyIpService = (function (_super) {
         return Constant.SERVICE_NAMES.WHATS_MY_IP;
     };
     WhatsMyIpService.prototype.onBindPeerService = function (service) {
+        var _this = this;
         service.on('whatsMyIp', function () {
             require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-                this.aEmit('sendMessage', 'My Local IP is: ' + add);
+                _this.aEmit('sendMessage', 'My Local IP is: ' + add);
             });
         });
     };
