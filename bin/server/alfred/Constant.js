@@ -10,7 +10,8 @@ var Constant = (function () {
         MESSENGER: "MessengerService",
         CHORE_ROTATION: 'ChoreRotationService',
         DAY: 'DayService',
-        UPDATE: 'UpdateService'
+        UPDATE: 'UpdateService',
+        WHATS_MY_IP: 'WhatsMyIpService'
     };
     return Constant;
 })();
