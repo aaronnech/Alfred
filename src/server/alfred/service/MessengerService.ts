@@ -56,6 +56,7 @@ class MessengerService extends Service {
     				break;
                 case "chores":
                     this.aEmit('chores');
+                    break;
                 case "update":
                     this.aEmit('update');
                     break;

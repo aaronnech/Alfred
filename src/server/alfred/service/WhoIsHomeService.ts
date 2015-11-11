@@ -45,7 +45,7 @@ class WhoIsHomeService extends Service {
                 macs = macs.filter((name) => {
                     return !!name;
                 });
-                
+
                 var greeting = WhoIsHomeService.GREETINGS[Math.round(Math.random() * (WhoIsHomeService.GREETINGS.length - 1))];
                 var message = '';
                 if (macs.length == 0) {
@@ -53,8 +53,8 @@ class WhoIsHomeService extends Service {
                 } else {
                     message = greeting + ' It looks like the following people are home: ' + macs.join(', ');
                 }
-                
-                this.aEmit('sendMessage', message);  
+
+                this.aEmit('sendMessage', message);
             })
         });
     }

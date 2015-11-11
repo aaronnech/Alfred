@@ -64,7 +64,7 @@ var ChoreRotationService = (function (_super) {
         'Kitchen 1',
         'Living Room',
         'Guest Bathroom',
-        'Kitchen 2'
+        'Floor'
     ];
     return ChoreRotationService;
 })(Service);

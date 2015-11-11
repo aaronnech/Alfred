@@ -25,7 +25,12 @@ var UpdateService = (function (_super) {
         var _this = this;
         service.on('update', function () {
             _this.aEmit('sendMessage', 'Thanks for notifying me to update!');
-            _this.aEmit('sendMessage', 'Downloading my new code now (should trigger a restart)...');
+            _this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!');
+            // Redownload occurs on system restart
+            var exec = require('child_process').exec;
+            setTimeout(function () {
+                exec('shutdown -r now', function (error, stdout, stderr) { });
+            }, 2000);
         });
     };
     return UpdateService;

@@ -47,6 +47,7 @@ var MessengerService = (function (_super) {
                     break;
                 case "chores":
                     this.aEmit('chores');
+                    break;
                 case "update":
                     this.aEmit('update');
                     break;

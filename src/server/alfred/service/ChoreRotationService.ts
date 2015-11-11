@@ -27,7 +27,7 @@ class ChoreRotationService extends Service {
       'Kitchen 1',
       'Living Room',
       'Guest Bathroom',
-      'Kitchen 2'  
+      'Floor'  
     ];
     
     constructor() {

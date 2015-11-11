@@ -23,7 +23,13 @@ class UpdateService extends Service {
     protected onBindPeerService(service : Service) : void {
         service.on('update', () => {
             this.aEmit('sendMessage', 'Thanks for notifying me to update!');
-            this.aEmit('sendMessage', 'Downloading my new code now (should trigger a restart)...');
+            this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!');
+
+            // Redownload occurs on system restart
+            var exec = require('child_process').exec;
+            setTimeout(() => {
+                exec('shutdown -r now', function(error, stdout, stderr) { });
+            }, 2000);
         });
     }
 }
