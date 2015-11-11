@@ -11,9 +11,6 @@
 .idea/*
 *.log
 *.map
-bin
-bin/*
-!node_modules/*
 
 # Created by https://www.gitignore.io
 
