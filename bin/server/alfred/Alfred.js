@@ -3,6 +3,7 @@ var MessengerService = require('./service/MessengerService');
 var ChoreRotationService = require('./service/ChoreRotationService');
 var DayService = require('./service/DayService');
 var UpdateService = require('./service/UpdateService');
+var WhatsMyIpService = require('./service/WhatsMyIpService');
 var login = require("facebook-chat-api");
 /**
  * Alfred is a Chatbot for home automation tasks
@@ -19,7 +20,8 @@ var Alfred = (function () {
             new WhoIsHomeService(),
             new ChoreRotationService(),
             new DayService(),
-            new UpdateService()
+            new UpdateService(),
+            new WhatsMyIpService()
         ];
     };
     /**
