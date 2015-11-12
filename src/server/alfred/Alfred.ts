@@ -22,7 +22,7 @@ class Alfred {
 	 */
 	private allocateServices() {
 		this.services = [
-			// new MessengerService(),
+			new MessengerService(),
 			new WhoIsHomeService(),
 			new ChoreRotationService(),
 			new DayService(),
