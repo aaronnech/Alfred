@@ -5,6 +5,7 @@ import ChoreRotationService = require('./service/ChoreRotationService');
 import DayService = require('./service/DayService');
 import UpdateService = require('./service/UpdateService');
 import WhatsMyIpService = require('./service/WhatsMyIpService');
+import IOTCodeService = require('./service/IOTCodeService');
 
 var login = require("facebook-chat-api");
 
@@ -26,7 +27,8 @@ class Alfred {
 			new ChoreRotationService(),
 			new DayService(),
 			new UpdateService(),
-			new WhatsMyIpService()
+			new WhatsMyIpService(),
+			new IOTCodeService()
 		];
 	}
 

@@ -116,7 +116,8 @@ var Service = (function (_super) {
         Constant.SERVICE_NAMES.DAY,
         Constant.SERVICE_NAMES.MESSENGER,
         Constant.SERVICE_NAMES.UPDATE,
-        Constant.SERVICE_NAMES.WHATS_MY_IP
+        Constant.SERVICE_NAMES.WHATS_MY_IP,
+        Constant.SERVICE_NAMES.IOT_CODE
     ];
     return Service;
 })(events.EventEmitter);

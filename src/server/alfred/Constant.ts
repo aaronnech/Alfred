@@ -10,7 +10,8 @@ class Constant {
 		CHORE_ROTATION: 'ChoreRotationService',
 		DAY: 'DayService',
 		UPDATE: 'UpdateService',
-		WHATS_MY_IP: 'WhatsMyIpService'
+		WHATS_MY_IP: 'WhatsMyIpService',
+		IOT_CODE: 'IOTCodeService'
 	};
 }
 
