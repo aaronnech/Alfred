@@ -1,5 +1,4 @@
 var WhoIsHomeService = require('./service/WhoIsHomeService');
-var MessengerService = require('./service/MessengerService');
 var ChoreRotationService = require('./service/ChoreRotationService');
 var DayService = require('./service/DayService');
 var UpdateService = require('./service/UpdateService');
@@ -17,7 +16,7 @@ var Alfred = (function () {
      */
     Alfred.prototype.allocateServices = function () {
         this.services = [
-            new MessengerService(),
+            // new MessengerService(),
             new WhoIsHomeService(),
             new ChoreRotationService(),
             new DayService(),

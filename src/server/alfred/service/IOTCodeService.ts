@@ -8,7 +8,9 @@ var net = require('net');
 class IOTCodeService extends Service {
     public static PORT = 1336;
     public static DOOR_CODE =
-    'print("HELLO FROM ALFRED")';
+    'while true do\n' +
+    'print("HELLO FROM ALFRED")\n' +
+    'end';
 
     constructor() {
         super();
@@ -21,6 +23,7 @@ class IOTCodeService extends Service {
             this.log('Created server on port ' + server.address().port);
 
             server.on('connection', (socket) => {
+                this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...');
                 socket.write(IOTCodeService.DOOR_CODE)
 
                 socket.on('end', () => {
