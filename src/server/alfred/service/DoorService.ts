@@ -21,6 +21,10 @@ class DoorService extends Service {
             server.on('connection', (socket) => {
                 socket.on('data', (data) => {
                     this.log(data);
+                    var split = data.split(':');
+                    if (split.length && split[0] == 'door' && split[1] == '1') {
+                        this.aEmit('sendMessage', 'The door opened!');
+                    }
                 });
 
                 socket.on('end', () => {

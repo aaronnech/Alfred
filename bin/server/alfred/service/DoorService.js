@@ -21,6 +21,10 @@ var DoorService = (function (_super) {
             server.on('connection', function (socket) {
                 socket.on('data', function (data) {
                     _this.log(data);
+                    var split = data.split(':');
+                    if (split.length && split[0] == 'door' && split[1] == '1') {
+                        _this.aEmit('sendMessage', 'The door opened!');
+                    }
                 });
                 socket.on('end', function () {
                     _this.log('Connection closed to us on server');
