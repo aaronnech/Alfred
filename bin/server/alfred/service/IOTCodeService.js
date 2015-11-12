@@ -47,20 +47,35 @@ var IOTCodeService = (function (_super) {
     };
     IOTCodeService.PORT = 1336;
     IOTCodeService.DOOR_CODE = [
+        'function sendDoorOpen()',
+        'sk=net.createConnection(net.TCP, 0)',
+        'sk:on("connection", function(sck)',
+        'print("connected, sending door info")',
+        'sk:send("door:1")',
+        'sk:close()',
+        'end );',
+        'print("connecting");',
+        'sk:connect(1337, "192.168.1.181")',
+        'end',
         'tmr.stop(0)',
         'gpio.mode(5, gpio.INPUT)',
         'dooropen = false',
-        'while 1 do',
+        'function run()',
         'if gpio.read(5) == 0 then',
         'if not dooropen then',
-        'print("OMG DOOR OPENED")',
+        'print("DOOR OPEN!")',
+        'sendDoorOpen()',
         'end',
         'dooropen = true',
         'else',
+        'if dooropen then',
+        'print("DOOR CLOSED!")',
+        'end',
         'dooropen = false',
         'end',
-        'tmr.delay(2000000)',
-        'end'
+        'tmr.alarm(0, 2000, 0, run)',
+        'end',
+        'run()'
     ].join('\n');
     return IOTCodeService;
 })(Service);

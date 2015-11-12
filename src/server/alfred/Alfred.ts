@@ -6,6 +6,7 @@ import DayService = require('./service/DayService');
 import UpdateService = require('./service/UpdateService');
 import WhatsMyIpService = require('./service/WhatsMyIpService');
 import IOTCodeService = require('./service/IOTCodeService');
+import DoorService = require('./service/DoorService');
 
 var login = require("facebook-chat-api");
 
@@ -28,7 +29,8 @@ class Alfred {
 			new DayService(),
 			new UpdateService(),
 			new WhatsMyIpService(),
-			new IOTCodeService()
+			new IOTCodeService(),
+			new DoorService()
 		];
 	}
 

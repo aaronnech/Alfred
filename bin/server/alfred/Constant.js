@@ -12,7 +12,8 @@ var Constant = (function () {
         DAY: 'DayService',
         UPDATE: 'UpdateService',
         WHATS_MY_IP: 'WhatsMyIpService',
-        IOT_CODE: 'IOTCodeService'
+        IOT_CODE: 'IOTCodeService',
+        DOOR: 'DoorService'
     };
     return Constant;
 })();

@@ -4,6 +4,7 @@ var DayService = require('./service/DayService');
 var UpdateService = require('./service/UpdateService');
 var WhatsMyIpService = require('./service/WhatsMyIpService');
 var IOTCodeService = require('./service/IOTCodeService');
+var DoorService = require('./service/DoorService');
 var login = require("facebook-chat-api");
 /**
  * Alfred is a Chatbot for home automation tasks
@@ -22,7 +23,8 @@ var Alfred = (function () {
             new DayService(),
             new UpdateService(),
             new WhatsMyIpService(),
-            new IOTCodeService()
+            new IOTCodeService(),
+            new DoorService()
         ];
     };
     /**
