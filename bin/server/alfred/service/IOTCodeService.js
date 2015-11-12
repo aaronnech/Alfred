@@ -46,9 +46,21 @@ var IOTCodeService = (function (_super) {
         // Nothing to do
     };
     IOTCodeService.PORT = 1336;
-    IOTCodeService.DOOR_CODE = 'while true do\n' +
-        'print("HELLO FROM ALFRED")\n' +
-        'end';
+    IOTCodeService.DOOR_CODE = [
+        'tmr.stop(0)',
+        'gpio.mode(5, gpio.INPUT)',
+        'dooropen = false',
+        'while true do',
+        'if gpio.read(5) == 1 then',
+        'if not dooropen',
+        'print("OMG DOOR OPENED")',
+        'end',
+        'dooropen = true',
+        'else',
+        'dooropen = false',
+        'end',
+        'end'
+    ].join('\n');
     return IOTCodeService;
 })(Service);
 module.exports = IOTCodeService;
