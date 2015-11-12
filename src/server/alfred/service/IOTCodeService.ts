@@ -11,15 +11,16 @@ class IOTCodeService extends Service {
         'tmr.stop(0)',
         'gpio.mode(5, gpio.INPUT)',
         'dooropen = false',
-        'while true do',
-            'if gpio.read(5) == 1 then',
-                'if not dooropen',
+        'while 1 do',
+            'if gpio.read(5) == 0 then',
+                'if not dooropen then',
                     'print("OMG DOOR OPENED")',
                 'end',
                 'dooropen = true',
             'else',
                 'dooropen = false',
             'end',
+            'tmr.delay(2000000)',
         'end'
     ].join('\n');
 
