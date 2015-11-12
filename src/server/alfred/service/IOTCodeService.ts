@@ -16,7 +16,7 @@ class IOTCodeService extends Service {
                 'sk:close()',
             'end );',
             'print("connecting");',
-            'sk:connect(1337, "192.168.1.181")',
+            'sk:connect(1337, "192.168.1.189")',
         'end',
 
         'tmr.stop(0)',

@@ -55,7 +55,7 @@ var IOTCodeService = (function (_super) {
         'sk:close()',
         'end );',
         'print("connecting");',
-        'sk:connect(1337, "192.168.1.181")',
+        'sk:connect(1337, "192.168.1.189")',
         'end',
         'tmr.stop(0)',
         'gpio.mode(5, gpio.INPUT)',
