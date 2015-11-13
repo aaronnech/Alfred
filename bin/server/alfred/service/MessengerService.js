@@ -93,7 +93,11 @@ var MessengerService = (function (_super) {
     MessengerService.PASSWORD = "501012thave";
     MessengerService.THREAD_ID = "1613266892256531";
     MessengerService.APPROVED_IDS = [
-        "100000178479403"
+        "100000178479403",
+        "100000146862102",
+        "636286721",
+        "100000030404239",
+        "100009910279499"
     ];
     return MessengerService;
 })(Service);

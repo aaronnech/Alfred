@@ -50,7 +50,11 @@ var DoorService = (function (_super) {
     };
     DoorService.PORT = 1337;
     DoorService.DOOR_PEOPLE = [
-        "100000178479403"
+        "100000178479403",
+        "100000146862102",
+        "636286721",
+        // "100000030404239",
+        "100009910279499"
     ];
     return DoorService;
 })(Service);
