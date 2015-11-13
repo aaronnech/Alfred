@@ -2,8 +2,7 @@
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Service = require('./Service');
 var Constant = require('../Constant');
@@ -24,8 +23,10 @@ var UpdateService = (function (_super) {
     UpdateService.prototype.onBindPeerService = function (service) {
         var _this = this;
         service.on('update', function () {
-            _this.aEmit('sendMessage', 'Thanks for notifying me to update!');
-            _this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!');
+            for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
+                _this.aEmit('sendMessage', 'Thanks for notifying me to update!', Constant.DEVELOPERS[i]);
+                _this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!', Constant.DEVELOPERS[i]);
+            }
             // Redownload occurs on system restart
             var exec = require('child_process').exec;
             setTimeout(function () {

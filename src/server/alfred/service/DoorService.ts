@@ -7,6 +7,14 @@ var net = require('net');
 
 class DoorService extends Service {
     public static PORT = 1337;
+    private static DOOR_PEOPLE: string[] = [
+        "100000178479403",
+        "100000146862102",
+        "636286721",
+        // "100000030404239",
+        "100009910279499"
+    ];
+
 
     constructor() {
         super();
@@ -20,8 +28,10 @@ class DoorService extends Service {
 
             server.on('connection', (socket) => {
                 socket.on('data', (data) => {
-                    this.log(data);
-                    this.aEmit('sendMessage', 'The door opened!');
+                    for (var i = 0; i < DoorService.DOOR_PEOPLE.length; i++) {
+                        // Only message people who care about the door (aka not lauren)
+                        this.aEmit('sendMessage', 'The door opened!', DoorService.DOOR_PEOPLE[i]);
+                    }
                 });
 
                 socket.on('end', () => {

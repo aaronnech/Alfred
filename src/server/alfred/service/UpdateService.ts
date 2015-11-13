@@ -7,11 +7,11 @@ var http = require('http');
 var util = require('util');
 var exec = require('child_process').exec;
 
-class UpdateService extends Service { 
+class UpdateService extends Service {
     constructor() {
         super();
     }
-    
+
     public start(peerServices : Service[]) {
         super.start(peerServices);
     }
@@ -22,8 +22,10 @@ class UpdateService extends Service {
 
     protected onBindPeerService(service : Service) : void {
         service.on('update', () => {
-            this.aEmit('sendMessage', 'Thanks for notifying me to update!');
-            this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!');
+            for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
+                this.aEmit('sendMessage', 'Thanks for notifying me to update!', Constant.DEVELOPERS[i]);
+                this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!', Constant.DEVELOPERS[i]);
+            }
 
             // Redownload occurs on system restart
             var exec = require('child_process').exec;

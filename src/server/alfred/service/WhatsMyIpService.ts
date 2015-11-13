@@ -13,9 +13,9 @@ class WhatsMyIpService extends Service {
     }
 
     protected onBindPeerService(service: Service): void {
-        service.on('whatsMyIp', () => {
+        service.on('whatsMyIp', (threadID) => {
             require('dns').lookup(require('os').hostname(), (err, add, fam) => {
-                this.aEmit('sendMessage', 'My Local IP is: ' + add);
+                this.aEmit('sendMessage', 'My Local IP is: ' + add, threadID);
             });
         });
     }

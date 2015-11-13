@@ -14,6 +14,8 @@ class Constant {
 		IOT_CODE: 'IOTCodeService',
 		DOOR: 'DoorService'
 	};
+
+	public static DEVELOPERS: any = ["100000178479403", "100000146862102"];
 }
 
 export = Constant;

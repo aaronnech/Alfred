@@ -2,8 +2,7 @@
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Service = require('./Service');
 var Constant = require('../Constant');
@@ -27,8 +26,8 @@ var ChoreRotationService = (function (_super) {
     };
     ChoreRotationService.prototype.onBindPeerService = function (service) {
         var _this = this;
-        service.on('chores', function () {
-            _this.emitChores();
+        service.on('chores', function (threadID) {
+            _this.emitChores(threadID);
         });
         switch (service.getName()) {
             case Constant.SERVICE_NAMES.DAY:
@@ -40,15 +39,15 @@ var ChoreRotationService = (function (_super) {
                 break;
         }
     };
-    ChoreRotationService.prototype.emitChores = function () {
+    ChoreRotationService.prototype.emitChores = function (threadID) {
         var d = new Date();
         var cursor = d.getWeekNumber() % 5;
-        this.aEmit('sendMessage', 'This week we have the following:');
+        this.aEmit('sendMessage', 'This week we have the following:', threadID);
         for (var i = 0; i < ChoreRotationService.PEOPLE.length; i++) {
             this.aEmit('sendMessage', ChoreRotationService.PEOPLE[i] +
                 ' is the ' +
                 ChoreRotationService.COMMAND_POSTS[(cursor + i) % 5] +
-                ' commander');
+                ' commander', threadID);
         }
     };
     ChoreRotationService.MONDAY = 1;

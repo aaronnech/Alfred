@@ -1,7 +1,6 @@
 var WhoIsHomeService = require('./service/WhoIsHomeService');
 var MessengerService = require('./service/MessengerService');
 var ChoreRotationService = require('./service/ChoreRotationService');
-var DayService = require('./service/DayService');
 var UpdateService = require('./service/UpdateService');
 var WhatsMyIpService = require('./service/WhatsMyIpService');
 var IOTCodeService = require('./service/IOTCodeService');
@@ -21,7 +20,7 @@ var Alfred = (function () {
             new MessengerService(),
             new WhoIsHomeService(),
             new ChoreRotationService(),
-            new DayService(),
+            // new DayService(),
             new UpdateService(),
             new WhatsMyIpService(),
             new IOTCodeService(),
