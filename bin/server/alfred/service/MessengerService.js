@@ -27,8 +27,8 @@ var MessengerService = (function (_super) {
             if (err)
                 return console.error(err);
             _this.api = api;
-            //this.messageQueue.push({ msg: 'Greetings! I\'m Alfred (I just woke up).' });
-            //this.attemptSend();
+            _this.messageQueue.push({ msg: 'Greetings! I\'m Alfred (I just woke up).' });
+            _this.attemptSend();
             api.listen(function (err, message) {
                 _this.onMessage(message);
             });
