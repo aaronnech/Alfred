@@ -2,8 +2,7 @@
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Service = require('./Service');
 var Constant = require('../Constant');
@@ -17,9 +16,9 @@ var WhatsMyIpService = (function (_super) {
     };
     WhatsMyIpService.prototype.onBindPeerService = function (service) {
         var _this = this;
-        service.on('whatsMyIp', function () {
+        service.on('whatsMyIp', function (threadID) {
             require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-                _this.aEmit('sendMessage', 'My Local IP is: ' + add);
+                _this.aEmit('sendMessage', 'My Local IP is: ' + add, threadID);
             });
         });
     };

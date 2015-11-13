@@ -2,8 +2,7 @@
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Service = require('./Service');
 var Constant = require('../Constant');
@@ -21,13 +20,13 @@ var WhoIsHomeService = (function (_super) {
     };
     WhoIsHomeService.prototype.onBindPeerService = function (service) {
         var _this = this;
-        service.on('whoIsHome', function () {
+        service.on('whoIsHome', function (threadID) {
             _this.getMACs(function (macs) {
                 macs = macs.map(function (mac) {
                     return WhoIsHomeService.MAC_MAP[mac];
                 });
-                macs = macs.filter(function (name) {
-                    return !!name;
+                macs = macs.filter(function (name, index) {
+                    return !!name && macs.indexOf(name) === index;
                 });
                 var greeting = WhoIsHomeService.GREETINGS[Math.round(Math.random() * (WhoIsHomeService.GREETINGS.length - 1))];
                 var message = '';
@@ -35,9 +34,9 @@ var WhoIsHomeService = (function (_super) {
                     message = greeting + ' It looks like no one is home right now!';
                 }
                 else {
-                    message = greeting + ' It looks like the following people are home: ' + macs.join(', ');
+                    message = greeting + ' It looks like the following people are home:\n' + macs.join('\n');
                 }
-                _this.aEmit('sendMessage', message);
+                _this.aEmit('sendMessage', message, threadID);
             });
         });
     };
@@ -68,7 +67,9 @@ var WhoIsHomeService = (function (_super) {
         '8C:3A:E3:46:C7:2E': 'Aaron Nech',
         '9C:FC:01:54:74:74': 'Lincoln Doyle',
         '4C:7C:5F:94:AA:51': 'Natalie Johnston',
-        '40:0E:85:6D:F1:21': 'Ternessa Cao'
+        '40:0E:85:6D:F1:21': 'Ternessa Cao',
+        '00:61:71:C4:48:64': 'Ryan Drapeau',
+        '78:FD:94:AB:B9:83': 'Lauren Kingston'
     };
     return WhoIsHomeService;
 })(Service);

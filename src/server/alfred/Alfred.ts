@@ -15,9 +15,9 @@ var login = require("facebook-chat-api");
  */
 class Alfred {
 	private services: Service[];
-	
+
 	constructor() {}
-	
+
 	/**
 	 * Allocates all the services of the bot
 	 */
@@ -26,7 +26,7 @@ class Alfred {
 			new MessengerService(),
 			new WhoIsHomeService(),
 			new ChoreRotationService(),
-			new DayService(),
+			// new DayService(),
 			new UpdateService(),
 			new WhatsMyIpService(),
 			new IOTCodeService(),

@@ -21,7 +21,7 @@ class Service extends events.EventEmitter {
 		Constant.SERVICE_NAMES.IOT_CODE,
 		Constant.SERVICE_NAMES.DOOR
 	];
-	
+
 	private isDown: boolean;
 
 

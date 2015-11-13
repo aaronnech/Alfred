@@ -13,7 +13,7 @@ import Constant = require('../Constant');
 
 class ChoreRotationService extends Service {
     private static MONDAY: number = 1;
-    
+
     private static PEOPLE: string[] = [
       'Ternessa Cao',
       'Ryan Drapeau',
@@ -21,19 +21,19 @@ class ChoreRotationService extends Service {
       'Lauren Kingston',
       'Natalie Johnson'
     ];
-    
+
     private static COMMAND_POSTS: string[] = [
       'Trash',
       'Kitchen 1',
       'Living Room',
       'Guest Bathroom',
-      'Floor'  
+      'Floor'
     ];
-    
+
     constructor() {
         super();
     }
-    
+
     public start(peerServices : Service[]) {
         super.start(peerServices);
     }
@@ -43,8 +43,8 @@ class ChoreRotationService extends Service {
     }
 
     protected onBindPeerService(service : Service) : void {
-      service.on('chores', () => {
-        this.emitChores();
+      service.on('chores', (threadID) => {
+        this.emitChores(threadID);
       });
 
       switch (service.getName()) {
@@ -58,18 +58,19 @@ class ChoreRotationService extends Service {
       }
     }
 
-    private emitChores() {
+    private emitChores(threadID? : any) {
       var d: any = new Date();
       var cursor = d.getWeekNumber() % 5;
 
-      this.aEmit('sendMessage', 'This week we have the following:');
+      this.aEmit('sendMessage', 'This week we have the following:', threadID);
 
       for (var i = 0; i < ChoreRotationService.PEOPLE.length; i++) {
         this.aEmit('sendMessage',
           ChoreRotationService.PEOPLE[i] +
           ' is the ' +
           ChoreRotationService.COMMAND_POSTS[(cursor + i) % 5] +
-          ' commander'
+          ' commander',
+          threadID
         );
       }
     }
