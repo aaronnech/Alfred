@@ -42,7 +42,6 @@ var ChoreRotationService = (function (_super) {
     ChoreRotationService.prototype.emitChores = function (threadID) {
         var d = new Date();
         var cursor = d.getWeekNumber() % 5;
-        this.aEmit('sendMessage', 'This week we have the following:', threadID);
         for (var i = 0; i < ChoreRotationService.PEOPLE.length; i++) {
             this.aEmit('sendMessage', ChoreRotationService.PEOPLE[i] +
                 ' is the ' +
