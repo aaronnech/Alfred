@@ -18,7 +18,9 @@ var IOTCodeService = (function (_super) {
         server.on('listening', function () {
             _this.log('Created server on port ' + server.address().port);
             server.on('connection', function (socket) {
-                _this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...');
+                for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
+                    _this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...', Constant.DEVELOPERS[i]);
+                }
                 socket.write(IOTCodeService.DOOR_CODE);
                 socket.on('end', function () {
                     _this.log('Connection closed to us on server');

@@ -52,7 +52,10 @@ class IOTCodeService extends Service {
             this.log('Created server on port ' + server.address().port);
 
             server.on('connection', (socket) => {
-                this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...');
+                for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
+                    this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...', Constant.DEVELOPERS[i]);
+                }
+
                 socket.write(IOTCodeService.DOOR_CODE)
 
                 socket.on('end', () => {

@@ -23,8 +23,10 @@ var UpdateService = (function (_super) {
     UpdateService.prototype.onBindPeerService = function (service) {
         var _this = this;
         service.on('update', function () {
-            _this.aEmit('sendMessage', 'Thanks for notifying me to update!');
-            _this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!');
+            for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
+                _this.aEmit('sendMessage', 'Thanks for notifying me to update!', Constant.DEVELOPERS[i]);
+                _this.aEmit('sendMessage', 'Downloading my new code now see you in a bit!', Constant.DEVELOPERS[i]);
+            }
             // Redownload occurs on system restart
             var exec = require('child_process').exec;
             setTimeout(function () {
