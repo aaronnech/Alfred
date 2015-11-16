@@ -93,7 +93,7 @@ class Constant {
         'run()'
     ].join('\n');
 
-	public static DEVELOPERS: any = ["100000178479403"]; //  , "100000146862102"];
+	public static DEVELOPERS: any = ["100000178479403", "100000146862102"];
 }
 
 export = Constant;
