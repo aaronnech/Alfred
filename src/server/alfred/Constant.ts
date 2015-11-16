@@ -56,7 +56,8 @@ class Constant {
 		UPDATE: 'UpdateService',
 		WHATS_MY_IP: 'WhatsMyIpService',
 		IOT_CODE: 'IOTCodeService',
-		DOOR: 'DoorService'
+		DOOR: 'DoorService',
+		BIG_BROTHER: 'BigBrotherService'
 	};
 
 	public static DOOR_CODE = [

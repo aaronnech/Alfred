@@ -1,4 +1,5 @@
 var WhoIsHomeService = require('./service/WhoIsHomeService');
+var BigBrotherService = require('./service/BigBrotherService');
 var MessengerService = require('./service/MessengerService');
 var ChoreRotationService = require('./service/ChoreRotationService');
 var UpdateService = require('./service/UpdateService');
@@ -24,7 +25,8 @@ var Alfred = (function () {
             new UpdateService(),
             new WhatsMyIpService(),
             new IOTCodeService(),
-            new DoorService()
+            new DoorService(),
+            new BigBrotherService()
         ];
     };
     /**

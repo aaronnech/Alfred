@@ -5,6 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Service = require('./Service');
+var BigBrotherService = require('./BigBrotherService');
 var Constant = require('../Constant');
 var Router = require('./Router');
 var net = require('net');
@@ -21,6 +22,34 @@ var DoorService = (function (_super) {
             server.on('connection', function (socket) {
                 socket.on('data', function (data) {
                     Router.whoIsHome(function (people) {
+                        var wasHome = BigBrotherService.previousWhoIsHome;
+                        var justArrived = [];
+                        // Compute who just arrived at the house
+                        for (var i = 0; i < people.length; i++) {
+                            if (wasHome.indexOf(people[i]) === -1) {
+                                justArrived.push(people[i]);
+                            }
+                        }
+                        // Alert everyone in the house who is home
+                        var peopleString = '';
+                        for (var i = 0; i < justArrived.length; i++) {
+                            if (i === 0) {
+                                peopleString += justArrived[i];
+                            }
+                            else if (justArrived.length === 2) {
+                                peopleString += ' and ' + justArrived[i];
+                            }
+                            else if (i + 1 === justArrived.length) {
+                                peopleString += ', and ' + justArrived[i];
+                            }
+                            else {
+                                peopleString += ', ' + justArrived[i];
+                            }
+                        }
+                        var msg = 'The door opened!';
+                        if (peopleString) {
+                            msg += ' ' + peopleString + ' appear to be home.';
+                        }
                         for (var i = 0; i < people.length; i++) {
                             _this.aEmit('sendMessage', 'The door opened!', Constant.PERSON_TO_ID[people[i]]);
                         }

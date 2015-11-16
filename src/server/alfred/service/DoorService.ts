@@ -1,6 +1,7 @@
 /// <reference path="../../../common/def/node.d.ts"/>
 
 import Service = require('./Service');
+import BigBrotherService = require('./BigBrotherService');
 import Constant = require('../Constant');
 import Router = require('./Router');
 
@@ -22,6 +23,34 @@ class DoorService extends Service {
             server.on('connection', (socket) => {
                 socket.on('data', (data) => {
                     Router.whoIsHome((people: string[]) => {
+                        var wasHome = BigBrotherService.previousWhoIsHome;
+                        var justArrived = [];
+                        // Compute who just arrived at the house
+                        for (var i = 0; i < people.length; i++) {
+                            if (wasHome.indexOf(people[i]) === -1) {
+                                justArrived.push(people[i]);
+                            }
+                        }
+
+                        // Alert everyone in the house who is home
+                        var peopleString = '';
+                        for (var i = 0; i < justArrived.length; i++) {
+                            if (i === 0) {
+                                peopleString += justArrived[i];
+                            } else if (justArrived.length === 2) {
+                                peopleString += ' and ' + justArrived[i];
+                            } else if (i + 1 === justArrived.length) {
+                                peopleString += ', and ' + justArrived[i];
+                            } else {
+                                peopleString += ', ' + justArrived[i];
+                            }
+                        }
+
+                        var msg = 'The door opened!';
+                        if (peopleString) {
+                            msg += ' ' + peopleString + ' appear to be home.';
+                        }
+
                         for (var i = 0; i < people.length; i++) {
                             this.aEmit(
                                 'sendMessage',

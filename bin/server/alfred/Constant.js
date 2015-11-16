@@ -51,7 +51,8 @@ var Constant = (function () {
         UPDATE: 'UpdateService',
         WHATS_MY_IP: 'WhatsMyIpService',
         IOT_CODE: 'IOTCodeService',
-        DOOR: 'DoorService'
+        DOOR: 'DoorService',
+        BIG_BROTHER: 'BigBrotherService'
     };
     Constant.DOOR_CODE = [
         'function sendDoorOpen()',

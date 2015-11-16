@@ -1,5 +1,6 @@
 import Service = require('./service/Service');
 import WhoIsHomeService = require('./service/WhoIsHomeService');
+import BigBrotherService = require('./service/BigBrotherService');
 import MessengerService = require('./service/MessengerService');
 import ChoreRotationService = require('./service/ChoreRotationService');
 import DayService = require('./service/DayService');
@@ -30,7 +31,8 @@ class Alfred {
 			new UpdateService(),
 			new WhatsMyIpService(),
 			new IOTCodeService(),
-			new DoorService()
+			new DoorService(),
+			new BigBrotherService()
 		];
 	}
 
