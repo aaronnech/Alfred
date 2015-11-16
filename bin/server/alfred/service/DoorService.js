@@ -20,9 +20,7 @@ var DoorService = (function (_super) {
             _this.log('Created server on port ' + server.address().port);
             server.on('connection', function (socket) {
                 socket.on('data', function (data) {
-                    console.log('boom');
                     Router.whoIsHome(function (people) {
-                        console.log(people);
                         for (var i = 0; i < people.length; i++) {
                             _this.aEmit('sendMessage', 'The door opened!', Constant.PERSON_TO_ID[people[i]]);
                         }
