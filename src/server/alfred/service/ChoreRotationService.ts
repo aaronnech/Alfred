@@ -12,23 +12,6 @@ import Constant = require('../Constant');
 };
 
 class ChoreRotationService extends Service {
-    private static MONDAY: number = 1;
-
-    private static PEOPLE: string[] = [
-      'Ternessa Cao',
-      'Ryan Drapeau',
-      'Aaron Nech',
-      'Lauren Kingston',
-      'Natalie Johnson'
-    ];
-
-    private static COMMAND_POSTS: string[] = [
-      'Trash',
-      'Kitchen 1',
-      'Living Room',
-      'Guest Bathroom',
-      'Floor'
-    ];
 
     constructor() {
         super();
@@ -50,7 +33,7 @@ class ChoreRotationService extends Service {
       switch (service.getName()) {
           case Constant.SERVICE_NAMES.DAY:
             service.on('newDay', (day: number) => {
-                if (day == ChoreRotationService.MONDAY) {
+              if (day == Constant.MONDAY_INDEX) {
                   this.emitChores();
                 }
             });
@@ -60,15 +43,14 @@ class ChoreRotationService extends Service {
 
     private emitChores(threadID? : any) {
       var d: any = new Date();
-      var cursor = d.getWeekNumber() % 5;
+      var cursor = d.getWeekNumber() % Constant.PEOPLE.length;
 
       this.aEmit('sendMessage', 'This week we have the following:', threadID);
-
-      for (var i = 0; i < ChoreRotationService.PEOPLE.length; i++) {
+      for (var i = 0; i < Constant.PEOPLE.length; i++) {
         this.aEmit('sendMessage',
-          ChoreRotationService.PEOPLE[i] +
+          Constant.PEOPLE[i] +
           ' is the ' +
-          ChoreRotationService.COMMAND_POSTS[(cursor + i) % 5] +
+          Constant.CHORES[(cursor + i) % Constant.PEOPLE.length] +
           ' commander',
           threadID
         );

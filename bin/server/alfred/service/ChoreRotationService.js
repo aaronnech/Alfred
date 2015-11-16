@@ -32,7 +32,7 @@ var ChoreRotationService = (function (_super) {
         switch (service.getName()) {
             case Constant.SERVICE_NAMES.DAY:
                 service.on('newDay', function (day) {
-                    if (day == ChoreRotationService.MONDAY) {
+                    if (day == Constant.MONDAY_INDEX) {
                         _this.emitChores();
                     }
                 });
@@ -41,30 +41,15 @@ var ChoreRotationService = (function (_super) {
     };
     ChoreRotationService.prototype.emitChores = function (threadID) {
         var d = new Date();
-        var cursor = d.getWeekNumber() % 5;
+        var cursor = d.getWeekNumber() % Constant.PEOPLE.length;
         this.aEmit('sendMessage', 'This week we have the following:', threadID);
-        for (var i = 0; i < ChoreRotationService.PEOPLE.length; i++) {
-            this.aEmit('sendMessage', ChoreRotationService.PEOPLE[i] +
+        for (var i = 0; i < Constant.PEOPLE.length; i++) {
+            this.aEmit('sendMessage', Constant.PEOPLE[i] +
                 ' is the ' +
-                ChoreRotationService.COMMAND_POSTS[(cursor + i) % 5] +
+                Constant.CHORES[(cursor + i) % Constant.PEOPLE.length] +
                 ' commander', threadID);
         }
     };
-    ChoreRotationService.MONDAY = 1;
-    ChoreRotationService.PEOPLE = [
-        'Ternessa Cao',
-        'Ryan Drapeau',
-        'Aaron Nech',
-        'Lauren Kingston',
-        'Natalie Johnson'
-    ];
-    ChoreRotationService.COMMAND_POSTS = [
-        'Trash',
-        'Kitchen 1',
-        'Living Room',
-        'Guest Bathroom',
-        'Floor'
-    ];
     return ChoreRotationService;
 })(Service);
 module.exports = ChoreRotationService;

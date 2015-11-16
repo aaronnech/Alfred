@@ -7,39 +7,6 @@ var net = require('net');
 
 class IOTCodeService extends Service {
     public static PORT = 1336;
-    public static DOOR_CODE = [
-        'function sendDoorOpen()',
-            'sk=net.createConnection(net.TCP, 0)',
-            'sk:on("connection", function(sck)',
-                'print("connected, sending door info")',
-                'sk:send("door:1")',
-                'sk:close()',
-            'end );',
-            'print("connecting");',
-            'sk:connect(1337, "192.168.1.189")',
-        'end',
-
-        'tmr.stop(0)',
-        'gpio.mode(5, gpio.INPUT)',
-        'dooropen = false',
-        'function run()',
-            'if gpio.read(5) == 0 then',
-                'if not dooropen then',
-                    'print("DOOR OPEN!")',
-                    'sendDoorOpen()',
-                'end',
-                'dooropen = true',
-            'else',
-                'if dooropen then',
-                    'print("DOOR CLOSED!")',
-                'end',
-                'dooropen = false',
-            'end',
-
-            'tmr.alarm(0, 2000, 0, run)',
-        'end',
-        'run()'
-    ].join('\n');
 
     constructor() {
         super();
@@ -56,7 +23,7 @@ class IOTCodeService extends Service {
                     this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...', Constant.DEVELOPERS[i]);
                 }
 
-                socket.write(IOTCodeService.DOOR_CODE)
+                socket.write(Constant.DOOR_CODE)
 
                 socket.on('end', () => {
                     this.log('Connection closed to us on server');

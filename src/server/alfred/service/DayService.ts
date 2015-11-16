@@ -4,16 +4,6 @@ import Service = require('./Service');
 import Constant = require('../Constant');
 
 class DayService extends Service {
-    private static DAYS: string[] = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ];
-
     private static ALERT_HOUR: number = 10;
 
     constructor() {
@@ -29,7 +19,7 @@ class DayService extends Service {
 
           if (n == DayService.ALERT_HOUR) {
             this.aEmit('newDay', d.getDay());
-            this.aEmit('sendMessage', 'Good morning! It\'s a brand new ' + DayService.DAYS[d.getDay()]);
+            this.aEmit('sendMessage', 'Good morning! It\'s a brand new ' + Constant.DAYS_OF_WEEK[d.getDay()]);
           }
         }, 1000 * 60 * 60);
     }

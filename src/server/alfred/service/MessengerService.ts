@@ -43,8 +43,11 @@ class MessengerService extends Service {
             if(err) return console.error(err);
             this.api = api;
 
-            this.messageQueue.push({ msg: 'Greetings! I\'m Alfred (I just woke up).' });
-            this.attemptSend();
+            for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
+                this.messageQueue.push({ msg: 'Greetings! I\'m Alfred (I just woke up).', threadID: Constant.DEVELOPERS[i] });
+                this.attemptSend();
+            }
+
 
             api.listen((err, message) => {
                 this.onMessage(message);

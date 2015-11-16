@@ -21,7 +21,7 @@ var IOTCodeService = (function (_super) {
                 for (var i = 0; i < Constant.DEVELOPERS.length; i++) {
                     _this.aEmit('sendMessage', 'The door reed switch has connected to me. Sending code...', Constant.DEVELOPERS[i]);
                 }
-                socket.write(IOTCodeService.DOOR_CODE);
+                socket.write(Constant.DOOR_CODE);
                 socket.on('end', function () {
                     _this.log('Connection closed to us on server');
                 });
@@ -47,37 +47,6 @@ var IOTCodeService = (function (_super) {
         // Nothing to do
     };
     IOTCodeService.PORT = 1336;
-    IOTCodeService.DOOR_CODE = [
-        'function sendDoorOpen()',
-        'sk=net.createConnection(net.TCP, 0)',
-        'sk:on("connection", function(sck)',
-        'print("connected, sending door info")',
-        'sk:send("door:1")',
-        'sk:close()',
-        'end );',
-        'print("connecting");',
-        'sk:connect(1337, "192.168.1.189")',
-        'end',
-        'tmr.stop(0)',
-        'gpio.mode(5, gpio.INPUT)',
-        'dooropen = false',
-        'function run()',
-        'if gpio.read(5) == 0 then',
-        'if not dooropen then',
-        'print("DOOR OPEN!")',
-        'sendDoorOpen()',
-        'end',
-        'dooropen = true',
-        'else',
-        'if dooropen then',
-        'print("DOOR CLOSED!")',
-        'end',
-        'dooropen = false',
-        'end',
-        'tmr.alarm(0, 2000, 0, run)',
-        'end',
-        'run()'
-    ].join('\n');
     return IOTCodeService;
 })(Service);
 module.exports = IOTCodeService;

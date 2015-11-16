@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Service = require('./Service');
 var Constant = require('../Constant');
+var Router = require('./Router');
 var net = require('net');
 var DoorService = (function (_super) {
     __extends(DoorService, _super);
@@ -19,10 +20,13 @@ var DoorService = (function (_super) {
             _this.log('Created server on port ' + server.address().port);
             server.on('connection', function (socket) {
                 socket.on('data', function (data) {
-                    for (var i = 0; i < DoorService.DOOR_PEOPLE.length; i++) {
-                        // Only message people who care about the door (aka not lauren)
-                        _this.aEmit('sendMessage', 'The door opened!', DoorService.DOOR_PEOPLE[i]);
-                    }
+                    console.log('boom');
+                    Router.whoIsHome(function (people) {
+                        console.log(people);
+                        for (var i = 0; i < people.length; i++) {
+                            _this.aEmit('sendMessage', 'The door opened!', Constant.PERSON_TO_ID[people[i]]);
+                        }
+                    });
                 });
                 socket.on('end', function () {
                     _this.log('Connection closed to us on server');
@@ -49,13 +53,6 @@ var DoorService = (function (_super) {
         // Nothing to do
     };
     DoorService.PORT = 1337;
-    DoorService.DOOR_PEOPLE = [
-        "100000178479403",
-        "100000146862102",
-        "636286721",
-        // "100000030404239",
-        "100009910279499"
-    ];
     return DoorService;
 })(Service);
 module.exports = DoorService;

@@ -19,7 +19,7 @@ var DayService = (function (_super) {
             var n = d.getHours();
             if (n == DayService.ALERT_HOUR) {
                 _this.aEmit('newDay', d.getDay());
-                _this.aEmit('sendMessage', 'Good morning! It\'s a brand new ' + DayService.DAYS[d.getDay()]);
+                _this.aEmit('sendMessage', 'Good morning! It\'s a brand new ' + Constant.DAYS_OF_WEEK[d.getDay()]);
             }
         }, 1000 * 60 * 60);
     };
@@ -29,15 +29,6 @@ var DayService = (function (_super) {
     DayService.prototype.onBindPeerService = function (service) {
         // Nothing
     };
-    DayService.DAYS = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
-    ];
     DayService.ALERT_HOUR = 10;
     return DayService;
 })(Service);

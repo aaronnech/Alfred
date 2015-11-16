@@ -1,17 +1,10 @@
 /// <reference path="../../../common/def/node.d.ts"/>
 
 import Service = require('./Service');
+import Router = require('./Router');
 import Constant = require('../Constant');
 
-var login = require("facebook-chat-api");
-var http = require('http');
-var util = require('util');
-var exec = require('child_process').exec;
-
 class WhoIsHomeService extends Service {
-    private static OPTIONS: string = '--user=tacocat --password=\!\!racecar\!\! -q -O - http://192.168.1.1/update_clients.asp';
-    private static TWO_G: number = 8;
-    private static FIVE_G: number = 9;
 
     private static GREETINGS: string[] = [
       'Hi!',
@@ -19,15 +12,6 @@ class WhoIsHomeService extends Service {
       'Greetings,',
       'Hola!'
     ];
-
-    private static MAC_MAP: any = {
-        '8C:3A:E3:46:C7:2E': 'Aaron Nech',
-        '9C:FC:01:54:74:74': 'Lincoln Doyle',
-        '4C:7C:5F:94:AA:51': 'Natalie Johnston',
-        '40:0E:85:6D:F1:21': 'Ternessa Cao',
-        '00:61:71:C4:48:64' : 'Ryan Drapeau',
-        '78:FD:94:AB:B9:83' : 'Lauren Kingston'
-    };
 
     constructor() {
         super();
@@ -39,42 +23,17 @@ class WhoIsHomeService extends Service {
 
     protected onBindPeerService(service : Service) : void {
         service.on('whoIsHome', (threadID) => {
-            this.getMACs((macs: string[]) => {
-                macs = macs.map((mac) => {
-                    return WhoIsHomeService.MAC_MAP[mac];
-                });
-
-                macs = macs.filter((name, index) => {
-                    return !!name && macs.indexOf(name) === index;
-                });
-
+            Router.whoIsHome((people: string[]) => {
                 var greeting = WhoIsHomeService.GREETINGS[Math.round(Math.random() * (WhoIsHomeService.GREETINGS.length - 1))];
                 var message = '';
-                if (macs.length == 0) {
+                if (people.length == 0) {
                     message = greeting + ' It looks like no one is home right now!';
                 } else {
-                    message = greeting + ' It looks like the following people are home:\n' + macs.join('\n');
+                    message = greeting + ' It looks like the following people are home:\n' + people.join('\n');
                 }
 
                 this.aEmit('sendMessage', message, threadID);
-            })
-        });
-    }
-
-    private getMACs(cb: Function) {
-        exec('wget ' + WhoIsHomeService.OPTIONS, (error: any, out: string) => {
-            var split: string[] = out.split('\n');
-            var twoGDevices: string = split[WhoIsHomeService.TWO_G].replace('wlList_2g:', '');
-            var twoGDevicesArray: any[] = eval(twoGDevices.substring(0, twoGDevices.length - 1));
-            var fiveGDevices: string = split[WhoIsHomeService.FIVE_G].replace('wlList_5g:', '');
-            var fiveGDevicesArray: any[] = eval(fiveGDevices.substring(0, fiveGDevices.length - 1));
-
-            // merge
-            var devices: any[] = twoGDevicesArray.concat(fiveGDevicesArray);
-
-            cb(devices.map((device) => {
-                return device[0];
-            }));
+            });
         });
     }
 }
