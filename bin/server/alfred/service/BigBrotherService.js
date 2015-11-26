@@ -27,7 +27,7 @@ var BigBrotherService = (function (_super) {
     BigBrotherService.prototype.onBindPeerService = function (service) {
         // Nothing
     };
-    BigBrotherService.UPDATE_TIME_MS = 120000; // 2 minutes
+    BigBrotherService.UPDATE_TIME_MS = 120000 * 3; // 2 minutes
     BigBrotherService.previousWhoIsHome = [];
     BigBrotherService.currentWhoIsHome = [];
     return BigBrotherService;

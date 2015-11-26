@@ -5,7 +5,7 @@ import Router = require('./Router');
 import Constant = require('../Constant');
 
 class BigBrotherService extends Service {
-    private static UPDATE_TIME_MS: number = 120000; // 2 minutes
+    private static UPDATE_TIME_MS: number = 120000 * 3; // 2 minutes
 
     public static previousWhoIsHome: string[] = [];
     public static currentWhoIsHome: string[] = [];
