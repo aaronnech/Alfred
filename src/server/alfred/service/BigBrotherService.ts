@@ -17,12 +17,12 @@ class BigBrotherService extends Service {
     public start(peerServices : Service[]) {
         super.start(peerServices);
 
-        setInterval(() => {
-          Router.whoIsHome((people: string[]) => {
-              BigBrotherService.previousWhoIsHome = BigBrotherService.currentWhoIsHome;
-              BigBrotherService.currentWhoIsHome = people;
-          });
-        }, BigBrotherService.UPDATE_TIME_MS);
+        // setInterval(() => {
+        //   Router.whoIsHome((people: string[]) => {
+        //       BigBrotherService.previousWhoIsHome = BigBrotherService.currentWhoIsHome;
+        //       BigBrotherService.currentWhoIsHome = people;
+        //   });
+        // }, BigBrotherService.UPDATE_TIME_MS);
     }
 
     public getName() : string {

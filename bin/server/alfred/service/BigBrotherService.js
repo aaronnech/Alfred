@@ -5,7 +5,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Service = require('./Service');
-var Router = require('./Router');
 var Constant = require('../Constant');
 var BigBrotherService = (function (_super) {
     __extends(BigBrotherService, _super);
@@ -14,12 +13,12 @@ var BigBrotherService = (function (_super) {
     }
     BigBrotherService.prototype.start = function (peerServices) {
         _super.prototype.start.call(this, peerServices);
-        setInterval(function () {
-            Router.whoIsHome(function (people) {
-                BigBrotherService.previousWhoIsHome = BigBrotherService.currentWhoIsHome;
-                BigBrotherService.currentWhoIsHome = people;
-            });
-        }, BigBrotherService.UPDATE_TIME_MS);
+        // setInterval(() => {
+        //   Router.whoIsHome((people: string[]) => {
+        //       BigBrotherService.previousWhoIsHome = BigBrotherService.currentWhoIsHome;
+        //       BigBrotherService.currentWhoIsHome = people;
+        //   });
+        // }, BigBrotherService.UPDATE_TIME_MS);
     };
     BigBrotherService.prototype.getName = function () {
         return Constant.SERVICE_NAMES.BIG_BROTHER;
