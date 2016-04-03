@@ -1,3 +1,4 @@
+"use strict";
 var WhoIsHomeService = require('./service/WhoIsHomeService');
 var BigBrotherService = require('./service/BigBrotherService');
 var MessengerService = require('./service/MessengerService');
@@ -58,5 +59,5 @@ var Alfred = (function () {
         this.startServices();
     };
     return Alfred;
-})();
+}());
 module.exports = Alfred;

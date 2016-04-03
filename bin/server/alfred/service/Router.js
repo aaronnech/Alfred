@@ -1,4 +1,5 @@
 /// <reference path="../../../common/def/node.d.ts"/>
+"use strict";
 var Constant = require('../Constant');
 var http = require('http');
 var util = require('util');
@@ -35,5 +36,5 @@ var Router = (function () {
     Router.TWO_G = 8;
     Router.FIVE_G = 9;
     return Router;
-})();
+}());
 module.exports = Router;

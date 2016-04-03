@@ -1,4 +1,5 @@
 /// <reference path="../../../common/def/node.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -29,7 +30,6 @@ var Service = (function (_super) {
      */
     Service.prototype.getName = function () {
         throw 'Service unnamed! Please override the getName method.';
-        return 'UnNamedService';
     };
     /**
      * Called on service start up
@@ -120,5 +120,5 @@ var Service = (function (_super) {
         Constant.SERVICE_NAMES.DOOR
     ];
     return Service;
-})(events.EventEmitter);
+}(events.EventEmitter));
 module.exports = Service;

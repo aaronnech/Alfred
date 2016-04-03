@@ -43,7 +43,6 @@ class Service extends events.EventEmitter {
 	 */
 	public getName() : string {
 		throw 'Service unnamed! Please override the getName method.';
-		return 'UnNamedService';
 	}
 
 	/**

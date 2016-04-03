@@ -1,4 +1,5 @@
 /// <reference path="../../common/def/node.d.ts"/>
+"use strict";
 /**
  * Global Constants for the Alfred Application
  */
@@ -87,5 +88,5 @@ var Constant = (function () {
     ].join('\n');
     Constant.DEVELOPERS = ["100000178479403", "100000146862102"];
     return Constant;
-})();
+}());
 module.exports = Constant;
