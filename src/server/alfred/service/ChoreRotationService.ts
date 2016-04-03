@@ -43,7 +43,7 @@ class ChoreRotationService extends Service {
 
     private emitChores(threadID? : any) {
       var d: any = new Date();
-      var cursor = d.getWeekNumber() % Constant.PEOPLE.length;
+      var cursor = (d.getWeekNumber() + 1) % Constant.PEOPLE.length;
 
       this.aEmit('sendMessage', 'This week we have the following:', threadID);
       for (var i = 0; i < Constant.PEOPLE.length; i++) {

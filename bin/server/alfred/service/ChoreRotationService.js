@@ -42,7 +42,7 @@ var ChoreRotationService = (function (_super) {
     };
     ChoreRotationService.prototype.emitChores = function (threadID) {
         var d = new Date();
-        var cursor = d.getWeekNumber() % Constant.PEOPLE.length;
+        var cursor = (d.getWeekNumber() + 1) % Constant.PEOPLE.length;
         this.aEmit('sendMessage', 'This week we have the following:', threadID);
         for (var i = 0; i < Constant.PEOPLE.length; i++) {
             this.aEmit('sendMessage', Constant.PEOPLE[i] +
